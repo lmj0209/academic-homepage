@@ -11,7 +11,7 @@
 .main-layout {
     display: grid;
     grid-template-columns: var(--sidebar-width) 1fr;
-    gap: var(--space-2xl);
+    gap: 32px;
     align-items: start;
 }
 
@@ -30,6 +30,18 @@
 /* Section spacing */
 .section {
     margin-bottom: var(--space-3xl);
+    animation: fadeIn var(--fade-in-duration) ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section:last-child {
@@ -43,6 +55,17 @@
     border-bottom: 2px solid var(--color-border);
     padding-bottom: var(--space-sm);
     margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-primary);
 }
 
 /* Responsive breakpoints */
@@ -110,10 +133,15 @@
     border-radius: var(--border-radius-sm);
 }
 
+.nav-links a {
+    transition: all var(--transition-speed) var(--transition-timing);
+}
+
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--color-primary);
     background-color: var(--color-bg-alt);
+    transform: translateY(-1px);
 }
 
 /* Mobile menu button */

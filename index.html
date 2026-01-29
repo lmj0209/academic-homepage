@@ -6,7 +6,26 @@
     <meta name="description" content="Personal academic homepage - Research, publications, and achievements">
     <meta name="keywords" content="academic, research, publications, machine learning, computer vision">
     <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#2c5282">
     <title>Your Name - Academic Homepage</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Your Name - Academic Homepage">
+    <meta property="og:description" content="Personal academic homepage - Research, publications, and achievements">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/avatar.jpg">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Name - Academic Homepage">
+    <meta name="twitter:description" content="Personal academic homepage - Research, publications, and achievements">
+    <meta name="twitter:image" content="images/avatar.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,6 +35,7 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/editor.css">
 </head>
 <body>
     <!-- Top Navigation -->
@@ -95,6 +115,21 @@
                             <!-- Services content rendered by JS -->
                         </div>
                     </section>
+
+                    <!-- Visitor Map (optional - enable Clustrmaps) -->
+                    <section id="visitor-map" class="section" style="display: none;">
+                        <h2 class="section-title">Visitor Map</h2>
+                        <div class="clustrmaps-container">
+                            <h3>Visitors from around the world</h3>
+                            <div class="clustrmaps-widget">
+                                <!-- Add your Clustrmaps widget code here -->
+                                <!-- Example: <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=YOUR_KEY&w=300&t=tt"></script> -->
+                                <p style="color: var(--color-text-muted); font-style: italic;">
+                                    Enable Clustrmaps by uncommenting the widget code in the HTML
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </main>
             </div>
         </div>
@@ -103,5 +138,12 @@
     <!-- JavaScript Files -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/dataManager.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/features.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/seo.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/editor.js"></script>
 </body>
 </html>

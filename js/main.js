@@ -2,6 +2,9 @@
  * Main JavaScript - Rendering logic for academic homepage
  */
 
+// Make init function global for editor to call
+let isInitialized = false;
+
 // Render profile sidebar
 function renderProfile() {
     const profile = siteData.profile;
@@ -291,6 +294,7 @@ function init() {
     renderServices();
     setupMobileMenu();
     setupScrollSpy();
+    isInitialized = true;
 }
 
 // Run when DOM is ready

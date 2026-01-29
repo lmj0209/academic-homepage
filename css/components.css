@@ -7,28 +7,38 @@
     padding: var(--space-lg);
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-speed) var(--transition-timing);
+}
+
+.profile-card:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .profile-avatar {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    margin: 0 auto var(--space-md);
+    margin: 0 auto var(--space-lg);
     object-fit: cover;
     border: 3px solid var(--color-border);
+    transition: transform var(--transition-speed) var(--transition-timing);
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
 }
 
 .profile-name {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
-    margin-bottom: var(--space-xs);
+    margin-bottom: 4px;
 }
 
 .profile-title {
     font-size: var(--font-size-base);
     color: var(--color-text-light);
-    margin-bottom: var(--space-sm);
+    margin-bottom: 6px;
 }
 
 .profile-institution {
@@ -45,6 +55,7 @@
     padding: var(--space-md);
     background-color: var(--color-bg-alt);
     border-radius: var(--border-radius-md);
+    border-left: 3px solid var(--color-primary);
 }
 
 .profile-info {
@@ -56,9 +67,14 @@
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-bottom: var(--space-sm);
+    margin-bottom: 8px;
     color: var(--color-text-light);
     font-size: var(--font-size-sm);
+    transition: color var(--transition-speed) var(--transition-timing);
+}
+
+.profile-info-item:hover {
+    color: var(--color-primary);
 }
 
 .profile-info-item i {
@@ -99,6 +115,7 @@
 .about-content p {
     margin-bottom: var(--space-md);
     color: var(--color-text-light);
+    line-height: 1.7;
 }
 
 .research-interests {
@@ -109,6 +126,7 @@
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-md);
     color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
 }
 
 .interest-tags {
@@ -125,6 +143,15 @@
     border-radius: var(--border-radius-md);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
+    transition: all var(--transition-speed) var(--transition-timing);
+    border: 1px solid transparent;
+}
+
+.interest-tag:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* ========== News Section (Scrollable) ========== */
@@ -138,28 +165,38 @@
 }
 
 .news-container::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .news-container::-webkit-scrollbar-track {
-    background: var(--color-bg);
-    border-radius: 3px;
+    background: var(--color-bg-alt);
+    border-radius: 4px;
 }
 
 .news-container::-webkit-scrollbar-thumb {
-    background: var(--color-text-muted);
-    border-radius: 3px;
+    background: var(--color-border);
+    border-radius: 4px;
+    transition: background-color var(--transition-speed) var(--transition-timing);
 }
 
 .news-container::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-light);
+    background: var(--color-text-muted);
 }
 
 .news-item {
     display: flex;
     gap: var(--space-md);
-    padding: var(--space-md) 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-speed) var(--transition-timing);
+}
+
+.news-item:hover {
+    background-color: var(--color-bg-alt);
+    margin: 0 calc(-1 * var(--space-md));
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    border-radius: var(--border-radius-sm);
 }
 
 .news-item:last-child {
@@ -204,7 +241,7 @@
 .publication-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
 }
 
 .publication-item {
@@ -212,11 +249,13 @@
     background-color: var(--color-bg);
     border-radius: var(--border-radius-md);
     border: 1px solid var(--color-border);
-    transition: box-shadow var(--transition-speed) ease;
+    transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .publication-item:hover {
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
 }
 
 .pub-title {
@@ -228,6 +267,10 @@
 
 .pub-title a {
     color: var(--color-text);
+}
+
+.pub-title a {
+    transition: color var(--transition-speed) var(--transition-timing);
 }
 
 .pub-title a:hover {
@@ -306,8 +349,17 @@
 .award-item {
     display: flex;
     gap: var(--space-md);
-    padding: var(--space-md) 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-speed) var(--transition-timing);
+}
+
+.award-item:hover {
+    background-color: var(--color-bg-alt);
+    margin: 0 calc(-1 * var(--space-md));
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    border-radius: var(--border-radius-sm);
 }
 
 .award-item:last-child {
@@ -356,6 +408,11 @@
 .experience-item {
     position: relative;
     padding-bottom: var(--space-xl);
+    transition: all var(--transition-speed) var(--transition-timing);
+}
+
+.experience-item:hover {
+    padding-left: var(--space-md);
 }
 
 .experience-item:last-child {
@@ -373,6 +430,12 @@
     border: 3px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 0 2px var(--color-border);
+    transition: transform var(--transition-speed) var(--transition-timing);
+}
+
+.experience-item:hover::before {
+    transform: scale(1.2);
+    background-color: var(--color-accent);
 }
 
 .exp-date {
@@ -434,4 +497,12 @@
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-sm);
     border: 1px solid var(--color-border);
+    transition: all var(--transition-speed) var(--transition-timing);
+}
+
+.service-item:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
 }
