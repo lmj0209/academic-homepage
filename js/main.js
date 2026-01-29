@@ -1,285 +1,297 @@
-// Main JavaScript functionality
+/**
+ * Main JavaScript - Rendering logic for academic homepage
+ */
 
-// Smooth scroll to sections
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize navigation
-    initNavigation();
+// Render profile sidebar
+function renderProfile() {
+    const profile = siteData.profile;
+    const container = document.getElementById('profile-container');
 
-    // Initialize smooth scroll
-    initSmoothScroll();
+    const socialLinksHTML = Object.entries(profile.social)
+        .filter(([_, url]) => url && url !== 'https://github.com/yourusername')
+        .map(([platform, url]) => {
+            const icons = {
+                github: '<i class="fab fa-github"></i>',
+                googleScholar: '<i class="fas fa-graduation-cap"></i>',
+                linkedin: '<i class="fab fa-linkedin-in"></i>',
+                twitter: '<i class="fab fa-twitter"></i>',
+                orcid: '<i class="fab fa-orcid"></i>'
+            };
+            return `<a href="${url}" class="social-link" target="_blank" rel="noopener noreferrer">
+                ${icons[platform] || ''}
+            </a>`;
+        }).join('');
 
-    // Initialize intersection observer for scroll animations
-    initScrollAnimations();
-
-    // Initialize active section highlighting
-    initActiveSection();
-});
-
-// Navigation functionality
-function initNavigation() {
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
-
-    if (navbarToggle && navbarMenu) {
-        navbarToggle.addEventListener('click', function() {
-            navbarToggle.classList.toggle('active');
-            navbarMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        const navbarLinks = document.querySelectorAll('.navbar-link');
-        navbarLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navbarToggle.classList.remove('active');
-                navbarMenu.classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.navbar')) {
-                navbarToggle.classList.remove('active');
-                navbarMenu.classList.remove('active');
-            }
-        });
-    }
-
-    // Add shadow to navbar on scroll
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 10) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
+    container.innerHTML = `
+        <div class="profile-card">
+            <img src="${profile.avatar}" alt="${profile.name.en}" class="profile-avatar">
+            <h2 class="profile-name">${profile.name.en}</h2>
+            <p class="profile-title">${profile.title}</p>
+            <p class="profile-institution">
+                <a href="${profile.institution.url}" target="_blank">${profile.institution.name}</a>
+            </p>
+            <p class="profile-quote">"${profile.quote}"</p>
+            <div class="profile-info">
+                <div class="profile-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${profile.location}</span>
+                </div>
+                <div class="profile-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:${profile.email}">${profile.email}</a>
+                </div>
+            </div>
+            <div class="profile-social">
+                ${socialLinksHTML}
+            </div>
+        </div>
+    `;
 }
 
-// Smooth scroll functionality
-function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
+// Render About section
+function renderAbout() {
+    const about = siteData.about;
+    const container = document.getElementById('about-container');
 
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+    const descriptionHTML = about.description
+        .map(p => `<p>${p}</p>`)
+        .join('');
 
-            // Skip if it's just #
-            if (href === '#') {
-                e.preventDefault();
-                return;
-            }
+    const interestsHTML = about.researchInterests
+        .map(interest => `<span class="interest-tag">${interest}</span>`)
+        .join('');
 
-            const target = document.querySelector(href);
+    container.innerHTML = `
+        <div class="about-content">
+            ${descriptionHTML}
+        </div>
+        <div class="research-interests">
+            <h4>Research Interests</h4>
+            <div class="interest-tags">
+                ${interestsHTML}
+            </div>
+        </div>
+    `;
+}
 
-            if (target) {
-                e.preventDefault();
-                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
-                const targetPosition = target.offsetTop - navbarHeight - 20;
+// Render News section with scrollable container
+function renderNews() {
+    const news = siteData.news;
+    const container = document.getElementById('news-container');
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+    const newsItemsHTML = news
+        .map(item => `
+            <div class="news-item">
+                <div class="news-icon">${item.icon}</div>
+                <div class="news-content">
+                    <div class="news-date">${item.date}</div>
+                    <div class="news-text">${item.content}</div>
+                </div>
+            </div>
+        `)
+        .join('');
+
+    container.innerHTML = `
+        <div class="news-container">
+            ${newsItemsHTML}
+        </div>
+    `;
+}
+
+// Helper function to highlight author name
+function highlightAuthorName(authors, myName) {
+    if (!myName || myName === 'Your Name') {
+        return authors;
+    }
+    const regex = new RegExp(`(${myName})`, 'gi');
+    return authors.replace(regex, '<span class="my-name">$1</span>');
+}
+
+// Helper function to render badges
+function renderBadges(badges) {
+    if (!badges || badges.length === 0) return '';
+
+    return badges.map(badge => {
+        const badgeLabels = {
+            'ccf-a': 'CCF-A',
+            'ccf-b': 'CCF-B',
+            'ccf-c': 'CCF-C',
+            'oral': 'Oral',
+            'poster': 'Poster',
+            'best-paper': 'Best Paper'
+        };
+        return `<span class="badge ${badge}">${badgeLabels[badge] || badge}</span>`;
+    }).join(' ');
+}
+
+// Render Publications section
+function renderPublications() {
+    const pubs = siteData.publications;
+    const container = document.getElementById('publications-container');
+
+    const pubsHTML = pubs.items
+        .map(pub => {
+            const authorsHTML = highlightAuthorName(pub.authors, pubs.myName);
+            const badgesHTML = renderBadges(pub.badges);
+            const linksHTML = pub.links
+                .map(link => `<a href="${link.url}" class="pub-link" target="_blank">${link.label}</a>`)
+                .join('');
+
+            return `
+                <div class="publication-item">
+                    <div class="pub-title">
+                        <a href="${pub.links[0]?.url || '#'}" target="_blank">${pub.title}</a>
+                    </div>
+                    <div class="pub-authors">${authorsHTML}</div>
+                    <div class="pub-venue">${pub.venue}</div>
+                    ${badgesHTML ? `<div class="pub-badges">${badgesHTML}</div>` : ''}
+                    <div class="pub-links">
+                        ${linksHTML}
+                    </div>
+                </div>
+            `;
+        })
+        .join('');
+
+    container.innerHTML = `<div class="publication-list">${pubsHTML}</div>`;
+}
+
+// Render Awards section
+function renderAwards() {
+    const awards = siteData.awards;
+    const container = document.getElementById('awards-container');
+
+    const awardsHTML = awards
+        .map(award => `
+            <li class="award-item">
+                <div class="award-date">${award.date}</div>
+                <div class="award-content">
+                    <div class="award-name">${award.name}</div>
+                    <div class="award-institution">${award.institution}</div>
+                </div>
+            </li>
+        `)
+        .join('');
+
+    container.innerHTML = `<ul class="awards-list">${awardsHTML}</ul>`;
+}
+
+// Render Experience section
+function renderExperience() {
+    const experience = siteData.experience;
+    const container = document.getElementById('experience-container');
+
+    const expHTML = experience
+        .map(exp => `
+            <div class="experience-item">
+                <div class="exp-date">${exp.date}</div>
+                <div class="exp-title">${exp.title}</div>
+                <div class="exp-institution">${exp.institution}</div>
+                ${exp.supervisor ? `<div class="exp-supervisor">${exp.supervisor}</div>` : ''}
+            </div>
+        `)
+        .join('');
+
+    container.innerHTML = `<div class="experience-timeline">${expHTML}</div>`;
+}
+
+// Render Services section
+function renderServices() {
+    const services = siteData.services;
+    const container = document.getElementById('services-container');
+
+    const reviewerHTML = services.reviewer
+        .map(item => `<span class="service-item">${item}</span>`)
+        .join('');
+
+    const pcMemberHTML = services.pcMember
+        .map(item => `<span class="service-item">${item}</span>`)
+        .join('');
+
+    container.innerHTML = `
+        <div class="services-list">
+            <div class="service-category">
+                <h4>Reviewer</h4>
+                <div class="service-items">
+                    ${reviewerHTML}
+                </div>
+            </div>
+            ${services.pcMember.length > 0 ? `
+                <div class="service-category">
+                    <h4>PC Member</h4>
+                    <div class="service-items">
+                        ${pcMemberHTML}
+                    </div>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+// Mobile menu toggle
+function setupMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('open');
+        }
     });
 }
 
-// Scroll animations using Intersection Observer
-function initScrollAnimations() {
+// Highlight active nav item based on scroll position
+function setupScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: '-80px 0px -50% 0px',
+        threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Add fade-in animation to sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
-    });
-}
-
-// Add animation class
-const style = document.createElement('style');
-style.textContent = `
-    .animate-in {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-`;
-document.head.appendChild(style);
-
-// Highlight active section in navigation
-function initActiveSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const navbarLinks = document.querySelectorAll('.navbar-link[href^="#"]');
-
-    function highlightSection() {
-        const scrollPosition = window.scrollY + 100;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navbarLinks.forEach(link => {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
+                    if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('active');
                     }
                 });
             }
         });
-    }
+    }, observerOptions);
 
-    window.addEventListener('scroll', highlightSection);
-    highlightSection(); // Initial call
+    sections.forEach(section => observer.observe(section));
 }
 
-// Utility function to copy text to clipboard
-function copyToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        return navigator.clipboard.writeText(text)
-            .then(() => true)
-            .catch(() => false);
-    }
-
-    // Fallback for older browsers
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-999999px';
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    try {
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        return Promise.resolve(true);
-    } catch (err) {
-        document.body.removeChild(textArea);
-        return Promise.resolve(false);
-    }
+// Initialize the page
+function init() {
+    renderProfile();
+    renderAbout();
+    renderNews();
+    renderPublications();
+    renderAwards();
+    renderExperience();
+    renderServices();
+    setupMobileMenu();
+    setupScrollSpy();
 }
 
-// Debounce function for performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// Apply throttle to scroll events
-const originalScroll = window.onscroll;
-window.onscroll = throttle(function() {
-    if (typeof originalScroll === 'function') {
-        originalScroll();
-    }
-}, 100);
-
-// Dynamic content loading (optional - used with data.js)
-function loadDynamicContent(sectionId, data) {
-    const section = document.getElementById(sectionId);
-    if (!section || !data) return;
-
-    const contentContainer = section.querySelector('.dynamic-content');
-    if (!contentContainer) return;
-
-    // Clear existing content
-    contentContainer.innerHTML = '';
-
-    // Load new content based on data
-    data.forEach(item => {
-        const element = createContentElement(item);
-        contentContainer.appendChild(element);
-    });
-}
-
-// Create content element from data object
-function createContentElement(data) {
-    const div = document.createElement('div');
-    div.className = data.className || '';
-
-    if (data.title) {
-        const title = document.createElement(data.titleTag || 'h3');
-        title.textContent = data.title;
-        div.appendChild(title);
-    }
-
-    if (data.content) {
-        const content = document.createElement(data.contentTag || 'p');
-        content.innerHTML = data.content;
-        div.appendChild(content);
-    }
-
-    if (data.links) {
-        const linksContainer = document.createElement('div');
-        linksContainer.className = 'content-links';
-
-        data.links.forEach(link => {
-            const a = document.createElement('a');
-            a.href = link.href;
-            a.textContent = link.text;
-            a.className = link.className || '';
-            if (link.target) a.target = link.target;
-            linksContainer.appendChild(a);
-        });
-
-        div.appendChild(linksContainer);
-    }
-
-    return div;
-}
-
-// Initialize when DOM is fully loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check for dynamic data
-        if (window.siteData) {
-            Object.keys(window.siteData).forEach(sectionId => {
-                loadDynamicContent(sectionId, window.siteData[sectionId]);
-            });
-        }
-    });
-} else {
-    // DOM already loaded
-    if (window.siteData) {
-        Object.keys(window.siteData).forEach(sectionId => {
-            loadDynamicContent(sectionId, window.siteData[sectionId]);
-        });
-    }
-}
+// Run when DOM is ready
+document.addEventListener('DOMContentLoaded', init);

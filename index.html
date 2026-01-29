@@ -3,438 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal academic and resume webpage">
-    <meta name="keywords" content="academic, research, resume, cv">
+    <meta name="description" content="Personal academic homepage - Research, publications, and achievements">
+    <meta name="keywords" content="academic, research, publications, machine learning, computer vision">
     <meta name="author" content="Your Name">
-    <title>Your Name - Academic & Resume</title>
+    <title>Your Name - Academic Homepage</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/variables.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#home" class="navbar-brand">Your Name</a>
-            <button class="navbar-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </button>
-            <ul class="navbar-menu">
-                <li><a href="#home" class="navbar-link">Home</a></li>
-                <li><a href="#education" class="navbar-link">Education</a></li>
-                <li><a href="#research" class="navbar-link">Research</a></li>
-                <li><a href="#publications" class="navbar-link">Publications</a></li>
-                <li><a href="#projects" class="navbar-link">Projects</a></li>
-                <li><a href="#experience" class="navbar-link">Experience</a></li>
-                <li><a href="#awards" class="navbar-link">Awards</a></li>
-                <li><a href="#skills" class="navbar-link">Skills</a></li>
-                <li><a href="#blog" class="navbar-link">Blog</a></li>
-                <li><a href="#contact" class="navbar-link">Contact</a></li>
-            </ul>
+            <div class="nav-links" id="nav-links">
+                <a href="#about">About</a>
+                <a href="#news">News</a>
+                <a href="#publications">Publications</a>
+                <a href="#awards">Awards</a>
+                <a href="#experience">Experience</a>
+                <a href="#services">Services</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
         <div class="container">
-            <div class="hero-content">
-                <img src="images/avatar.jpg" alt="Avatar" class="hero-avatar">
-                <h1 class="hero-name">Your Name</h1>
-                <p class="hero-title">Ph.D. Candidate in Computer Science</p>
-                <p class="hero-institution">University Name</p>
-                <p class="hero-bio">
-                    Researcher specializing in machine learning and natural language processing.
-                    Passionate about developing AI systems that can understand and generate human language.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                    <a href="#publications" class="btn btn-secondary">View Publications</a>
-                </div>
-                <div class="social-links" style="margin-top: var(--space-6); justify-content: center;">
-                    <a href="https://github.com" target="_blank" class="social-link" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="social-link" aria-label="Twitter">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <div class="section-title">
-                <h2>Education</h2>
-                <p>Academic background and achievements</p>
-            </div>
-            <div class="education-item">
-                <div class="education-content">
-                    <h3 class="education-degree">Ph.D. in Computer Science</h3>
-                    <p class="education-school">University Name</p>
-                    <p class="education-details">Major: Artificial Intelligence | Advisor: Prof. Name</p>
-                </div>
-                <span class="education-year">2020 - Present</span>
-            </div>
-            <div class="education-item" style="margin-top: var(--space-6);">
-                <div class="education-content">
-                    <h3 class="education-degree">M.S. in Computer Science</h3>
-                    <p class="education-school">University Name</p>
-                    <p class="education-details">Major: Computer Science | GPA: 3.9/4.0</p>
-                </div>
-                <span class="education-year">2018 - 2020</span>
-            </div>
-            <div class="education-item" style="margin-top: var(--space-6);">
-                <div class="education-content">
-                    <h3 class="education-degree">B.S. in Computer Science</h3>
-                    <p class="education-school">University Name</p>
-                    <p class="education-details">Major: Computer Science | GPA: 3.8/4.0</p>
-                </div>
-                <span class="education-year">2014 - 2018</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" style="background-color: var(--color-bg-secondary);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Research Interests</h2>
-                <p>Areas of research and academic focus</p>
-            </div>
-            <div class="research-grid">
-                <div class="research-card">
-                    <span class="research-icon">🤖</span>
-                    <h3 class="research-title">Machine Learning</h3>
-                    <p class="research-description">
-                        Deep learning, reinforcement learning, and their applications in real-world problems.
-                    </p>
-                </div>
-                <div class="research-card">
-                    <span class="research-icon">🧠</span>
-                    <h3 class="research-title">Natural Language Processing</h3>
-                    <p class="research-description">
-                        Language models, text generation, sentiment analysis, and dialogue systems.
-                    </p>
-                </div>
-                <div class="research-card">
-                    <span class="research-icon">📊</span>
-                    <h3 class="research-title">Data Mining</h3>
-                    <p class="research-description">
-                        Large-scale data analysis, pattern recognition, and knowledge discovery.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications">
-        <div class="container">
-            <div class="section-title">
-                <h2>Publications</h2>
-                <p>Selected research papers and publications</p>
-            </div>
-            <div class="paper-item">
-                <a href="#" class="paper-title">Title of Paper One: A Novel Approach to Problem Solving</a>
-                <p class="paper-authors">Author One, Author Two, Author Three</p>
-                <p class="paper-venue">Conference Name 2024</p>
-                <div class="paper-links">
-                    <a href="#" class="btn btn-outline btn-sm">PDF</a>
-                    <a href="#" class="btn btn-outline btn-sm">Code</a>
-                    <a href="#" class="btn btn-outline btn-sm">Cite</a>
-                </div>
-            </div>
-            <div class="paper-item">
-                <a href="#" class="paper-title">Title of Paper Two: Advances in the Field</a>
-                <p class="paper-authors">Author One, Author Two</p>
-                <p class="paper-venue">Journal Name 2023</p>
-                <div class="paper-links">
-                    <a href="#" class="btn btn-outline btn-sm">PDF</a>
-                    <a href="#" class="btn btn-outline btn-sm">Code</a>
-                    <a href="#" class="btn btn-outline btn-sm">Cite</a>
-                </div>
-            </div>
-            <div class="paper-item">
-                <a href="#" class="paper-title">Title of Paper Three: Research Findings</a>
-                <p class="paper-authors">Author One, Author Two, Author Three, Author Four</p>
-                <p class="paper-venue">Conference Name 2023</p>
-                <div class="paper-links">
-                    <a href="#" class="btn btn-outline btn-sm">PDF</a>
-                    <a href="#" class="btn btn-outline btn-sm">Code</a>
-                    <a href="#" class="btn btn-outline btn-sm">Cite</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" style="background-color: var(--color-bg-secondary);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Projects</h2>
-                <p>Featured research and development projects</p>
-            </div>
-            <div class="grid grid-cols-3">
-                <div class="card project-card">
-                    <h3 class="card-title">Project Name One</h3>
-                    <p class="card-content">
-                        A detailed description of the project and its goals. This project demonstrates expertise in the field.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">NLP</span>
+            <div class="main-layout">
+                <!-- Sidebar / Profile -->
+                <aside class="sidebar">
+                    <div id="profile-container">
+                        <!-- Profile content rendered by JS -->
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-                <div class="card project-card">
-                    <h3 class="card-title">Project Name Two</h3>
-                    <p class="card-content">
-                        Another project description showcasing technical skills and problem-solving abilities.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">API</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-                <div class="card project-card">
-                    <h3 class="card-title">Project Name Three</h3>
-                    <p class="card-content">
-                        A third project highlighting additional capabilities and collaborative work.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">ML</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+                </aside>
+
+                <!-- Main Content Area -->
+                <main class="main-content">
+                    <!-- About Me Section -->
+                    <section id="about" class="section">
+                        <h2 class="section-title">About Me</h2>
+                        <div id="about-container">
+                            <!-- About content rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- News Section -->
+                    <section id="news" class="section">
+                        <h2 class="section-title">News</h2>
+                        <div id="news-container">
+                            <!-- News content rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Publications Section -->
+                    <section id="publications" class="section">
+                        <h2 class="section-title">Publications</h2>
+                        <div id="publications-container">
+                            <!-- Publications content rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Awards Section -->
+                    <section id="awards" class="section">
+                        <h2 class="section-title">Awards</h2>
+                        <div id="awards-container">
+                            <!-- Awards content rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section id="experience" class="section">
+                        <h2 class="section-title">Experience</h2>
+                        <div id="experience-container">
+                            <!-- Experience content rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Services Section -->
+                    <section id="services" class="section">
+                        <h2 class="section-title">Services</h2>
+                        <div id="services-container">
+                            <!-- Services content rendered by JS -->
+                        </div>
+                    </section>
+                </main>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-title">
-                <h2>Work Experience</h2>
-                <p>Professional and research experience</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3 class="timeline-title">Senior Research Engineer</h3>
-                    <p class="timeline-company">Company Name</p>
-                    <p class="timeline-duration">2022 - Present</p>
-                    <p class="timeline-description">
-                        Leading research in machine learning applications. Developed novel algorithms and published papers in top conferences.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <h3 class="timeline-title">Research Intern</h3>
-                    <p class="timeline-company">Research Lab</p>
-                    <p class="timeline-duration">2021 - 2022</p>
-                    <p class="timeline-description">
-                        Worked on cutting-edge AI research projects. Collaborated with senior researchers on publication.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <h3 class="timeline-title">Teaching Assistant</h3>
-                    <p class="timeline-company">University Name</p>
-                    <p class="timeline-duration">2020 - 2021</p>
-                    <p class="timeline-description">
-                        Assisted in teaching undergraduate courses in algorithms and data structures.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section id="awards" style="background-color: var(--color-bg-secondary);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Awards & Honors</h2>
-                <p>Recognition and achievements</p>
-            </div>
-            <div class="award-item">
-                <div class="award-content">
-                    <h3 class="award-name">Best Paper Award</h3>
-                    <p class="award-organization">Conference Name</p>
-                </div>
-                <span class="award-year">2024</span>
-            </div>
-            <div class="award-item">
-                <div class="award-content">
-                    <h3 class="award-name">Outstanding Student Award</h3>
-                    <p class="award-organization">University Name</p>
-                </div>
-                <span class="award-year">2022</span>
-            </div>
-            <div class="award-item">
-                <div class="award-content">
-                    <h3 class="award-name">Research Excellence Grant</h3>
-                    <p class="award-organization">Funding Organization</p>
-                </div>
-                <span class="award-year">2021</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-title">
-                <h2>Skills</h2>
-                <p>Technical skills and expertise</p>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">Programming Languages</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">TypeScript</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">Machine Learning</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">Keras</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">Web Development</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Express</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">Tools & Platforms</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">GCP</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" style="background-color: var(--color-bg-secondary);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Blog & News</h2>
-                <p>Latest posts and updates</p>
-            </div>
-            <div class="blog-item">
-                <a href="#" class="blog-title">Understanding Deep Learning</a>
-                <p class="blog-date">January 15, 2025</p>
-                <p class="blog-excerpt">
-                    An introduction to deep learning concepts and their applications in modern AI systems.
-                </p>
-            </div>
-            <div class="blog-item">
-                <a href="#" class="blog-title">Optimizing Neural Networks</a>
-                <p class="blog-date">December 20, 2024</p>
-                <p class="blog-excerpt">
-                    Tips and techniques for better model performance and faster training.
-                </p>
-            </div>
-            <div class="blog-item">
-                <a href="#" class="blog-title">Latest Research Paper Published</a>
-                <p class="blog-date">November 10, 2024</p>
-                <p class="blog-excerpt">
-                    Our new paper on reinforcement learning has been accepted at a top conference.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact</h2>
-                <p>Get in touch</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>
-                        <p class="contact-label">Email</p>
-                        <p class="contact-value"><a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <p class="contact-label">Location</p>
-                        <p class="contact-value">City, Country</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div>
-                        <p class="contact-label">Phone</p>
-                        <p class="contact-value">+1 234 567 890</p>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: var(--space-8);">
-                <a href="mailto:your.email@example.com" class="btn btn-primary btn-lg">Send Me an Email</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">&copy; 2025 Your Name. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">GitHub</a>
-                    <a href="#" class="footer-link">LinkedIn</a>
-                    <a href="#" class="footer-link">Twitter</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
+    <!-- JavaScript Files -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
 </body>

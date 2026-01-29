@@ -1,114 +1,63 @@
+/* CSS Variables - Theme configuration */
+
 :root {
     /* Colors */
-    --color-primary: #2563eb;
-    --color-primary-dark: #1d4ed8;
-    --color-primary-light: #3b82f6;
-
-    --color-secondary: #64748b;
-    --color-secondary-dark: #475569;
-
-    --color-accent: #0ea5e9;
-
-    --color-text-main: #1e293b;
-    --color-text-light: #64748b;
-    --color-text-muted: #94a3b8;
-
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f8fafc;
-    --color-bg-tertiary: #f1f5f9;
-
+    --color-bg: #ffffff;
+    --color-bg-alt: #f8f9fa;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-text-muted: #999999;
+    --color-primary: #2c5282;
+    --color-primary-hover: #2a4365;
+    --color-accent: #4299e1;
     --color-border: #e2e8f0;
-    --color-border-light: #f1f5f9;
-
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-error: #ef4444;
-
-    /* Dark mode */
-    --color-text-main-dark: #f1f5f9;
-    --color-text-light-dark: #94a3b8;
-    --color-text-muted-dark: #64748b;
-    --color-bg-primary-dark: #0f172a;
-    --color-bg-secondary-dark: #1e293b;
-    --color-bg-tertiary-dark: #334155;
-    --color-border-dark: #334155;
+    --color-shadow: rgba(0, 0, 0, 0.1);
 
     /* Typography */
-    --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
 
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 1.875rem;
-    --font-size-4xl: 2.25rem;
-    --font-size-5xl: 3rem;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 40px;
 
-    --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    --line-height-tight: 1.25;
-    --line-height-normal: 1.5;
-    --line-height-relaxed: 1.75;
+    --line-height-tight: 1.2;
+    --line-height-base: 1.6;
+    --line-height-relaxed: 1.8;
 
     /* Spacing */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-10: 2.5rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-    --space-20: 5rem;
-    --space-24: 6rem;
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
 
-    /* Border radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    --radius-2xl: 1.5rem;
-    --radius-full: 9999px;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    /* Layout */
+    --container-max-width: 1200px;
+    --sidebar-width: 300px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
 
     /* Transitions */
-    --transition-fast: 150ms ease-in-out;
-    --transition-base: 250ms ease-in-out;
-    --transition-slow: 350ms ease-in-out;
+    --transition-speed: 0.2s;
 
-    /* Container */
-    --container-max-width: 1200px;
-    --container-padding: var(--space-6);
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 
-    /* Navigation */
-    --nav-height: 64px;
-    --nav-bg: var(--color-bg-primary);
-    --nav-border: var(--color-border);
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-text-main: var(--color-text-main-dark);
-        --color-text-light: var(--color-text-light-dark);
-        --color-text-muted: var(--color-text-muted-dark);
-        --color-bg-primary: var(--color-bg-primary-dark);
-        --color-bg-secondary: var(--color-bg-secondary-dark);
-        --color-bg-tertiary: var(--color-bg-tertiary-dark);
-        --color-border: var(--color-border-dark);
-    }
+    /* Specific Component Heights */
+    --news-container-height: 350px;
 }

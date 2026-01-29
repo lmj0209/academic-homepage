@@ -1,155 +1,209 @@
-// Dynamic data structure for easy content management
-// This file is optional - you can also edit content directly in HTML
+/**
+ * Site Data - JSON structure for academic homepage
+ * Edit this file to update the website content
+ */
 
 const siteData = {
-    // Education data
-    education: [
-        {
-            className: 'education-item',
-            title: 'Ph.D. in Computer Science',
-            school: 'University Name',
-            major: 'Artificial Intelligence',
-            advisor: 'Prof. Name',
-            year: '2020 - Present',
-            details: 'Research focus on machine learning and natural language processing.'
+    // Profile Information
+    profile: {
+        name: {
+            en: "Your Name",
+            zh: "您的姓名"
         },
-        {
-            className: 'education-item',
-            title: 'M.S. in Computer Science',
-            school: 'University Name',
-            major: 'Computer Science',
-            advisor: 'Prof. Name',
-            year: '2018 - 2020',
-            details: 'Specialized in algorithms and data structures.'
+        title: "Ph.D. Candidate",
+        institution: {
+            name: "Your University",
+            url: "https://www.example.edu"
         },
-        {
-            className: 'education-item',
-            title: 'B.S. in Computer Science',
-            school: 'University Name',
-            major: 'Computer Science',
-            year: '2014 - 2018',
-            details: 'Graduated with honors.'
+        quote: "Research is creating new knowledge.",
+        location: "City, Country",
+        email: "your.email@example.edu",
+        avatar: "images/avatar.jpg",
+        social: {
+            github: "https://github.com/yourusername",
+            googleScholar: "https://scholar.google.com/citations?user=YOUR_ID",
+            linkedin: "https://linkedin.com/in/yourprofile",
+            twitter: "https://twitter.com/yourhandle",
+            orcid: "https://orcid.org/0000-0000-0000-0000"
         }
-    ],
-
-    // Research areas
-    research: [
-        {
-            icon: '🤖',
-            title: 'Machine Learning',
-            description: 'Deep learning, reinforcement learning, and their applications in real-world problems.'
-        },
-        {
-            icon: '🧠',
-            title: 'Natural Language Processing',
-            description: 'Language models, text generation, and sentiment analysis.'
-        },
-        {
-            icon: '📊',
-            title: 'Data Mining',
-            description: 'Large-scale data analysis and pattern recognition.'
-        }
-    ],
-
-    // Publications
-    papers: [
-        {
-            title: 'Title of Paper One',
-            authors: 'Author One, Author Two, Author Three',
-            venue: 'Conference Name 2024',
-            pdf: '#',
-            code: '#',
-            cite: '#'
-        },
-        {
-            title: 'Title of Paper Two',
-            authors: 'Author One, Author Two',
-            venue: 'Journal Name 2023',
-            pdf: '#',
-            code: '#',
-            cite: '#'
-        }
-    ],
-
-    // Projects
-    projects: [
-        {
-            title: 'Project Name One',
-            description: 'A detailed description of the project and its goals.',
-            tags: ['Python', 'PyTorch', 'NLP'],
-            link: '#',
-            image: 'placeholder'
-        },
-        {
-            title: 'Project Name Two',
-            description: 'Another project description showcasing technical skills.',
-            tags: ['JavaScript', 'React', 'API'],
-            link: '#',
-            image: 'placeholder'
-        }
-    ],
-
-    // Work experience
-    experience: [
-        {
-            title: 'Senior Research Engineer',
-            company: 'Company Name',
-            duration: '2022 - Present',
-            description: 'Leading research in machine learning applications.'
-        },
-        {
-            title: 'Research Intern',
-            company: 'Research Lab',
-            duration: '2021 - 2022',
-            description: 'Worked on cutting-edge AI research projects.'
-        }
-    ],
-
-    // Awards
-    awards: [
-        {
-            name: 'Best Paper Award',
-            organization: 'Conference Name',
-            year: '2024'
-        },
-        {
-            name: 'Outstanding Student Award',
-            organization: 'University Name',
-            year: '2022'
-        }
-    ],
-
-    // Skills
-    skills: {
-        'Programming Languages': ['Python', 'JavaScript', 'C++', 'Java'],
-        'Machine Learning': ['PyTorch', 'TensorFlow', 'Scikit-learn'],
-        'Web Development': ['HTML/CSS', 'React', 'Node.js'],
-        'Tools': ['Git', 'Docker', 'Linux']
     },
 
-    // Blog posts
-    blog: [
+    // About Section
+    about: {
+        description: [
+            "I am a Ph.D. candidate in [Department] at [University], advised by <a href='#'>Prof. Advisor Name</a>.",
+            "My research focuses on [Research Area], with a particular interest in [Specific Topic].",
+            "Previously, I received my B.S. degree in [Major] from [University] in [Year]."
+        ],
+        researchInterests: [
+            "Machine Learning",
+            "Computer Vision",
+            "Natural Language Processing",
+            "Deep Learning",
+            "Reinforcement Learning"
+        ]
+    },
+
+    // News Section (sorted by date, descending)
+    news: [
         {
-            date: 'January 15, 2025',
-            title: 'Understanding Deep Learning',
-            excerpt: 'An introduction to deep learning concepts and applications.',
-            link: '#'
+            date: "2024.06",
+            icon: "🎉",
+            content: "Our paper on [Topic] has been accepted at <strong>Conference 2024</strong>!"
         },
         {
-            date: 'December 20, 2024',
-            title: 'Optimizing Neural Networks',
-            excerpt: 'Tips and techniques for better model performance.',
-            link: '#'
+            date: "2024.05",
+            icon: "📝",
+            content: "Started internship at <a href='#'>Company Name</a> as Research Intern."
+        },
+        {
+            date: "2024.03",
+            icon: "🏆",
+            content: "Received <strong>Best Paper Award</strong> at Workshop 2024."
+        },
+        {
+            date: "2024.01",
+            icon: "🔥",
+            content: "New paper on [Topic] is available on arXiv: <a href='#'>arXiv:2401.xxxxx</a>."
+        },
+        {
+            date: "2023.11",
+            icon: "📝",
+            content: "Presented our work at <strong>Conference 2023</strong> in City, Country."
+        },
+        {
+            date: "2023.09",
+            icon: "🎓",
+            content: "Started Ph.D. program at [University] with [Prof. Name]."
         }
     ],
 
-    // Contact information
-    contact: {
-        email: 'your.email@example.com',
-        address: 'City, Country',
-        phone: '+1 234 567 890'
+    // Publications Section
+    // myName is used for highlighting your name in author list
+    publications: {
+        myName: "Your Name",
+        items: [
+            {
+                title: "Title of Your First Paper",
+                authors: "First Author, Your Name, Third Author, Fourth Author",
+                venue: "Conference on Machine Learning (CML), 2024",
+                badges: ["ccf-a", "oral"],
+                links: [
+                    { label: "PDF", url: "#" },
+                    { label: "Code", url: "#" },
+                    { label: "Poster", url: "#" }
+                ]
+            },
+            {
+                title: "Title of Your Second Paper",
+                authors: "Your Name, Co-Author, Senior Author",
+                venue: "Neural Information Processing Systems (NeurIPS), 2023",
+                badges: ["ccf-a"],
+                links: [
+                    { label: "PDF", url: "#" },
+                    { label: "Code", url: "#" },
+                    { label: "Slides", url: "#" }
+                ]
+            },
+            {
+                title: "Title of Third Paper",
+                authors: "First Author, Your Name, Another Author",
+                venue: "International Conference on Computer Vision (ICCV), 2023",
+                badges: ["ccf-a", "best-paper"],
+                links: [
+                    { label: "PDF", url: "#" },
+                    { label: "Video", url: "#" }
+                ]
+            },
+            {
+                title: "Title of a Journal Paper",
+                authors: "Your Name, Collaborator A, Collaborator B",
+                venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2023",
+                badges: ["ccf-a"],
+                links: [
+                    { label: "PDF", url: "#" },
+                    { label: "Supp", url: "#" }
+                ]
+            },
+            {
+                title: "Title of a Workshop Paper",
+                authors: "Your Name, Co-Author",
+                venue: "Workshop at CVPR 2023",
+                badges: ["poster"],
+                links: [
+                    { label: "PDF", url: "#" }
+                ]
+            }
+        ]
+    },
+
+    // Awards Section
+    awards: [
+        {
+            date: "2023",
+            name: "Best Paper Award",
+            institution: "International Conference on XYZ"
+        },
+        {
+            date: "2022",
+            name: "Outstanding Student Award",
+            institution: "Your University"
+        },
+        {
+            date: "2021",
+            name: "National Scholarship",
+            institution: "Ministry of Education"
+        },
+        {
+            date: "2020",
+            name: "Research Excellence Award",
+            institution: "Department of Computer Science"
+        }
+    ],
+
+    // Experience Section
+    experience: [
+        {
+            date: "2023 - Present",
+            title: "Ph.D. Candidate",
+            institution: "University Name",
+            supervisor: "Advisor: Prof. Advisor Name"
+        },
+        {
+            date: "2022 - 2023",
+            title: "Research Intern",
+            institution: "Tech Company Name",
+            supervisor: "Mentor: Dr. Mentor Name"
+        },
+        {
+            date: "2019 - 2022",
+            title: "Research Assistant",
+            institution: "University Name",
+            supervisor: "Advisor: Prof. Advisor Name"
+        },
+        {
+            date: "2015 - 2019",
+            title: "B.S. in Computer Science",
+            institution: "University Name",
+            supervisor: ""
+        }
+    ],
+
+    // Services Section
+    services: {
+        reviewer: [
+            "NeurIPS 2024",
+            "ICML 2024",
+            "ICLR 2023, 2024",
+            "CVPR 2023, 2024",
+            "ECCV 2024",
+            "AAAI 2023, 2024",
+            "TPAMI",
+            "IJCV"
+        ],
+        pcMember: [
+            "Workshop on XYZ 2024",
+            "Conference ABC 2023"
+        ]
     }
 };
-
-// Expose data globally for main.js to use
-window.siteData = siteData;
