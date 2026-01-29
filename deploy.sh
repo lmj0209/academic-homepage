@@ -15,7 +15,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'  # No Color
 
 # 项目配置
-REMOTE_REPO=""  # 在这里填入你的 GitHub 仓库地址，格式：https://github.com/username/repo.git
+REMOTE_REPO="https://github.com/lmj0209/academic-homepage.git"  # 在这里填入你的 GitHub 仓库地址，格式：https://github.com/username/repo.git
 REMOTE_NAME="origin"
 MAIN_BRANCH="main"
 
