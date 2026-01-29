@@ -16,21 +16,18 @@ class LiveEditManager {
      * 初始化
      */
     init() {
-        // 检查是否有保存的编辑数据
-        const savedData = this.loadSavedData();
+        // 删除页面加载时的自动检查，避免误触发恢复提示
+        // 只在用户主动请求时才检查已保存的数据
 
-        if (savedData) {
-            // 如果有保存的数据，显示提示
-            this.showAutoApplyPrompt(savedData);
-        } else {
-            // 没有保存的数据，正常初始化编辑器
-            this.initEditMode();
-        }
+        // 直接初始化编辑器
+        this.initEditMode();
 
         // 监听页面加载完成
         document.addEventListener('DOMContentLoaded', () => {
             this.setupPreviewToggle();
         });
+
+        console.log('Live Edit Manager 初始化完成（不自动检查草稿）');
     }
 
     /**
