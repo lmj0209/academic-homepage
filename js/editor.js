@@ -74,8 +74,18 @@ function createEditButton() {
     const button = document.createElement('button');
     button.id = 'edit-mode-btn';
     button.className = 'edit-mode-btn';
-    button.innerHTML = '<i class="fas fa-edit"></i> <span>Edit</span>';
+    button.innerHTML = '<i class="fas fa-edit"></i> <span>编辑</span>';
+    button.addEventListener('click', () => toggleEditMode());
     return button;
+}
+
+// Toggle edit mode
+function toggleEditMode() {
+    // 检查是否已初始化 liveEditManager
+    if (window.liveEditManager) {
+        // 切换编辑模式
+        window.liveEditManager.togglePreviewMode();
+    }
 }
 
 // Create export menu button
