@@ -360,45 +360,140 @@ function saveChanges() {
     // Save to localStorage
     saveToLocalStorage();
 
-    // Download as data.js file
-    downloadDataFile();
+    // Generate new data.js content
+    const newDataJS = generateDataJSContent();
 
-    // Show success message with options
-    showSaveNotification();
-
-    // Disable edit mode
-    disableEditing();
+    // Show save notification with better options
+    showSaveNotification(newDataJS);
 }
 
-// Show save notification with options
-function showSaveNotification() {
+// Generate data.js file content
+function generateDataJSContent() {
+    return `/**
+ * Site Data - JSON structure for academic homepage
+ * Edit this file to update the website content
+ * Last updated: ${new Date().toLocaleString()}
+ */
+
+const siteData = ${JSON.stringify(editSiteData, null, 4)};
+`;
+}
+
+// Show save notification with copy functionality
+function showSaveNotification(dataJSContent) {
+    // Remove existing notification
+    const existing = document.querySelector('.save-notification');
+    if (existing) {
+        existing.remove();
+    }
+
     const notification = document.createElement('div');
-    notification.className = 'save-notification show';
+    notification.className = 'save-notification';
     notification.innerHTML = `
-        <div class="save-notification-content">
-            <i class="fas fa-check-circle"></i>
-            <span>Changes saved!</span>
-            <div class="save-notification-options">
-                <button onclick="window.open('js/data.js', '_blank')" class="save-option-btn">
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Open data.js</span>
-                </button>
-                <button onclick="downloadDataFile()" class="save-option-btn">
-                    <i class="fas fa-download"></i>
-                    <span>Download again</span>
-                </button>
+        <div class="save-notification-header">
+            <div class="save-icon">
+                <i class="fas fa-check-circle"></i>
+                <span>保存成功！</span>
             </div>
+            <button class="close-save-btn" onclick="this.closest('.save-notification').remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="save-notification-body">
+            <div class="save-steps">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>复制新的数据代码</strong>
+                    <p>点击下方按钮复制完整代码</p>
+                </div>
+                <div class="step-action">
+                    <button onclick="copyNewData()" class="copy-main-btn">
+                        <i class="fas fa-copy"></i>
+                        <span>复制 data.js 代码</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="step-divider">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>替换项目中的 data.js 文件</strong>
+                    <p>打开 <code>js/data.js</code> 文件，粘贴新代码并保存</p>
+                </div>
+                <div class="step-info">
+                    <div class="info-label">文件路径：</div>
+                    <div class="info-path">js/data.js</div>
+                </div>
+            </div>
+
+            <div class="step-divider">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>刷新页面查看更新</strong>
+                    <p>保存文件后，按 <kbd>F5</kbd> 或刷新浏览器</p>
+                </div>
+                <div class="step-action">
+                    <button onclick="location.reload()" class="refresh-btn">
+                        <i class="fas fa-sync"></i>
+                        <span>刷新页面</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="save-notification-footer">
+            <button onclick="downloadDataFile()" class="download-option-btn">
+                <i class="fas fa-download"></i>
+                <span>或下载文件（备份用）</span>
+            </button>
         </div>
     `;
 
     document.body.appendChild(notification);
 
+    // Animate in
     setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 4000);
+        notification.classList.add('show');
+    }, 10);
+
+    // Store data for copy function
+    window.currentDataJSContent = dataJSContent;
+
+    // Disable edit mode
+    disableEditing();
+}
+
+// Copy new data.js content to clipboard
+function copyNewData() {
+    if (window.currentDataJSContent) {
+        navigator.clipboard.writeText(window.currentDataJSContent).then(() => {
+            showNotification('✓ 代码已复制到剪贴板！', true);
+        }).catch(err => {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = window.currentDataJSContent;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showNotification('✓ 代码已复制到剪贴板！', true);
+            } catch (e) {
+                alert('复制失败，请手动选择复制');
+            }
+            document.body.removeChild(textarea);
+        });
+    }
 }
 
 // Collect edited data from DOM
