@@ -75,7 +75,6 @@ function createEditButton() {
     button.id = 'edit-mode-btn';
     button.className = 'edit-mode-btn';
     button.innerHTML = '<i class="fas fa-edit"></i> <span>编辑</span>';
-    button.addEventListener('click', () => toggleEditMode());
     return button;
 }
 
@@ -83,9 +82,29 @@ function createEditButton() {
 function toggleEditMode() {
     // 检查是否已初始化 liveEditManager
     if (window.liveEditManager) {
-        // 切换编辑模式
-        window.liveEditManager.togglePreviewMode();
+        // 如果在预览模式，先切回编辑模式
+        if (window.liveEditManager.isPreviewMode) {
+            window.liveEditManager.togglePreviewMode();
+        }
     }
+}
+
+// 新的编辑模式切换函数
+function enterEditMode() {
+    // 确保 liveEditManager 已初始化
+    if (!window.liveEditManager) {
+        console.error('LiveEditManager 未初始化');
+        return;
+    }
+
+    // 检查并清除保存的草稿提示（如果有）
+    const modal = document.querySelector('.auto-apply-modal');
+    if (modal) {
+        modal.remove();
+    }
+
+    // 进入编辑模式
+    window.liveEditManager.setupLiveEdit();
 }
 
 // Create export menu button
