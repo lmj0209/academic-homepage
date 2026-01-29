@@ -1219,6 +1219,72 @@ body.edit-mode::before {
     transform: translateX(0);
 }
 
+/* Save notification with options */
+.save-notification {
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    background-color: #fff;
+    color: var(--color-text);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 10002;
+    min-width: 320px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s var(--transition-timing);
+}
+
+.save-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.save-notification-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.save-notification-content i {
+    color: #48bb78;
+    font-size: var(--font-size-xl);
+}
+
+.save-notification-content span {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.save-notification-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.save-option-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-timing);
+    width: 100%;
+}
+
+.save-option-btn:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
 /* Editable link styling */
 body.edit-mode a[contenteditable="true"] {
     color: var(--color-primary);

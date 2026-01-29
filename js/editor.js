@@ -9,6 +9,9 @@ let editSiteData = null;
 
 // Initialize editor
 function initEditor() {
+    // Check if there's a saved draft and offer to restore
+    checkForSavedDraft();
+
     // Create edit button
     const editButton = createEditButton();
     document.body.appendChild(editButton);
@@ -26,8 +29,44 @@ function initEditor() {
     // Listen for export button clicks
     exportButton.addEventListener('click', showExportMenu);
 
-    // Load saved draft from localStorage
-    loadSavedDraft();
+    // Load saved draft from localStorage (silent, without prompt)
+    loadSavedDraftSilent();
+}
+
+// Check for saved draft and offer to restore
+function checkForSavedDraft() {
+    try {
+        const savedDraft = localStorage.getItem('siteDataDraft');
+        if (savedDraft) {
+            // Parse the draft
+            const draft = JSON.parse(savedDraft);
+
+            // Compare with current data
+            const currentStr = JSON.stringify(siteData);
+            if (currentStr !== savedDraft) {
+                // There's a difference, ask user
+                const shouldRestore = confirm('发现保存的草稿数据与当前内容不同。\n\n是否要恢复保存的草稿？\n\n点击"确定"恢复草稿\n点击"取消"使用当前内容');
+
+                if (shouldRestore) {
+                    // Apply the draft
+                    Object.assign(siteData, draft);
+
+                    // Re-render with draft data
+                    init();
+
+                    showNotification('已恢复到保存的草稿', true);
+
+                    // Update editSiteData to match
+                    editSiteData = JSON.parse(JSON.stringify(siteData));
+                } else {
+                    // Clear the draft if user chose not to restore
+                    localStorage.removeItem('siteDataDraft');
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Failed to check for saved draft:', e);
+    }
 }
 
 // Create edit mode toggle button
@@ -324,11 +363,42 @@ function saveChanges() {
     // Download as data.js file
     downloadDataFile();
 
-    // Show success message
-    showNotification('Changes saved successfully!');
+    // Show success message with options
+    showSaveNotification();
 
     // Disable edit mode
     disableEditing();
+}
+
+// Show save notification with options
+function showSaveNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'save-notification show';
+    notification.innerHTML = `
+        <div class="save-notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span>Changes saved!</span>
+            <div class="save-notification-options">
+                <button onclick="window.open('js/data.js', '_blank')" class="save-option-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Open data.js</span>
+                </button>
+                <button onclick="downloadDataFile()" class="save-option-btn">
+                    <i class="fas fa-download"></i>
+                    <span>Download again</span>
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 4000);
 }
 
 // Collect edited data from DOM
@@ -418,6 +488,27 @@ function loadSavedDraft() {
                 siteData = JSON.parse(JSON.stringify(editSiteData));
                 init(); // Re-render with saved data
                 showNotification('Draft restored!');
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load from localStorage:', e);
+    }
+}
+
+// Load saved draft silently (without confirmation prompt)
+function loadSavedDraftSilent() {
+    try {
+        const savedDraft = localStorage.getItem('siteDataDraft');
+        if (savedDraft) {
+            // Only restore if there's a real difference
+            const currentStr = JSON.stringify(siteData);
+            if (currentStr !== savedDraft) {
+                editSiteData = JSON.parse(savedDraft);
+                siteData = JSON.parse(JSON.stringify(editSiteData));
+                // Re-render with saved data
+                init();
+
+                console.log('Restored draft from localStorage automatically');
             }
         }
     } catch (e) {
@@ -812,7 +903,7 @@ function addDeleteButton(element) {
 }
 
 // Show notification
-function showNotification(message) {
+function showNotification(message, isSuccess = true) {
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
